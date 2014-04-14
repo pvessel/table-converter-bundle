@@ -1,0 +1,20 @@
+parameters:
+    pvessel_table_converter.manager.class: Pvessel\TableConverterBundle\Manager\ConverterManager
+    pvessel_table_converter.importer.json.class: Pvessel\TableConverterBundle\Importer\JsonImporter
+    pvessel_table_converter.exporter.xml.class: Pvessel\TableConverterBundle\Exporter\XmlExporter
+
+services:
+    pvessel_table_converter.manager:
+        class: %pvessel_table_converter.manager.class%
+
+# built-in importers: 
+    pvessel_table_converter.importer.json:
+        class: %pvessel_table_converter.importer.json.class%
+        tags:
+            -  { name: pvessel_table_converter.importer, alias: json }
+
+# built-in exporters: 
+    pvessel_table_converter.exporter.xml:
+        class: %pvessel_table_converter.exporter.xml.class%
+        tags:
+            -  { name: pvessel_table_converter.exporter, alias: xml }
