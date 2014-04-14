@@ -1,0 +1,34 @@
+{
+    "name": "pvessel/table-converter-bundle",
+    "type": "symfony-bundle",
+    "description": "This bundle provides flexible tool to convert table data between different formats.",
+    "keywords": ["json", "xml", "converter", "html"],
+    "homepage": "https://github.com/pvessel/table-converter-bundle",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Tomasz Kalisz",
+            "homepage": "http://pressure-vessel.tumblr.com"
+        }
+    ],
+    "archive": {
+        "exclude": ["/Tests"]
+    },
+    "require": {
+        "php":                      ">=5.3.2",
+        "symfony/framework-bundle": "~2.3"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit":          "~3.7",
+        "symfony/yaml":             "~2.3",
+        "symfony/console":          "~2.3"
+    },
+
+    "autoload": {
+        "psr-0": { "Pvessel\\TableConverterBundle": "" }
+    },
+
+    "target-dir": "Pvessel/TableConverterBundle"
+}
