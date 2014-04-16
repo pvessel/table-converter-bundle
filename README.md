@@ -6,7 +6,7 @@ This simple bundle provides flexible tool to convert table data between differen
 Array coded in json may be converted to csv string,
 or HTML table can be converted to XML string.
 
-It uses built in and external "importers" (to parse source string) and "exporters" (to generate target string).
+It uses built-in and external "importers" (to parse source string) and "exporters" (to generate target string).
 
 
 ### Installation
@@ -56,8 +56,8 @@ $convertedTable = $this->container->get('pvessel_table_converter.manager')
 
 ## Importers and exporters
 
-In order to run bundle uses importers and exporters.
-There are few built in importers and exporters:
+In order to run, bundle uses importers and exporters.
+There are few built-in:
 
 - json
 - xml
@@ -66,6 +66,4 @@ There are few built in importers and exporters:
 - ascii_table
 - csv
 
-You can easy add/modify your own importer/exporter by creating service (which implements 
-ImporterInterface/ExporterInterface) and adding tag "pvessel_array_converter.importer" or "pvessel_array_converter.exporter" with alias.
-
+See [Documentation](Resources/doc/index.md) for more informations.
