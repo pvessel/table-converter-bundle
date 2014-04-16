@@ -5,10 +5,11 @@ class XmlExporter extends AbstractExporter implements ExporterInterface
 {
     public function getTarget()
     {
+        $head = $this->getGenerateHeadIfEmpty();
         $xmlArray = array();
         
         foreach($this->body as $rowIndex => $row) {
-            foreach($this->head as $column) {
+            foreach($head as $column) {
                 $xmlArray[$rowIndex][current($row)] = $column;
                 next($row);
             }

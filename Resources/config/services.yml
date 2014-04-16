@@ -2,8 +2,12 @@ parameters:
     pvessel_table_converter.manager.class: Pvessel\TableConverterBundle\Manager\ConverterManager
     pvessel_table_converter.importer.json.class: Pvessel\TableConverterBundle\Importer\JsonImporter
     pvessel_table_converter.importer.xml.class: Pvessel\TableConverterBundle\Importer\XmlImporter
+    pvessel_table_converter.importer.html_table.class: Pvessel\TableConverterBundle\Importer\HtmlTableImporter
+    pvessel_table_converter.importer.html_ul.class: Pvessel\TableConverterBundle\Importer\HtmlListImporter
     pvessel_table_converter.exporter.json.class: Pvessel\TableConverterBundle\Exporter\JsonExporter
     pvessel_table_converter.exporter.xml.class: Pvessel\TableConverterBundle\Exporter\XmlExporter
+    pvessel_table_converter.exporter.html_table.class: Pvessel\TableConverterBundle\Exporter\HtmlTableExporter
+    pvessel_table_converter.exporter.html_ul.class: Pvessel\TableConverterBundle\Exporter\HtmlListExporter
 
 services:
     pvessel_table_converter.manager:
@@ -19,6 +23,17 @@ services:
         tags:
             -  { name: pvessel_table_converter.importer, alias: xml }
 
+    pvessel_table_converter.importer.html_table:
+        class: %pvessel_table_converter.importer.html_table.class%
+        tags:
+            -  { name: pvessel_table_converter.importer, alias: html_table }
+
+    pvessel_table_converter.importer.html_ul:
+        class: %pvessel_table_converter.importer.html_ul.class%
+        tags:
+            -  { name: pvessel_table_converter.importer, alias: html_ul }
+
+
 # built-in exporters: 
     pvessel_table_converter.exporter.json:
         class: %pvessel_table_converter.exporter.json.class%
@@ -28,3 +43,14 @@ services:
         class: %pvessel_table_converter.exporter.xml.class%
         tags:
             -  { name: pvessel_table_converter.exporter, alias: xml }
+
+    pvessel_table_converter.exporter.html_table:
+        class: %pvessel_table_converter.exporter.html_table.class%
+        tags:
+            -  { name: pvessel_table_converter.exporter, alias: html_table }
+
+    pvessel_table_converter.exporter.html_ul:
+        class: %pvessel_table_converter.exporter.html_ul.class%
+        tags:
+            -  { name: pvessel_table_converter.exporter, alias: html_ul }
+

@@ -21,4 +21,16 @@ abstract class AbstractExporter implements ExporterInterface
     }
 
     abstract public function getTarget();
+    
+    /*
+     * This method could be useful if exporter require head, but import provides empty
+     */
+    protected function getGenerateHeadIfEmpty()
+    {
+        if(0 == count($this->head)) {
+            return array_fill(1, count(reset($this->body)), 'column');
+        } else {
+            return $this->head;
+        }
+    }
 }

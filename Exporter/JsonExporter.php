@@ -5,10 +5,12 @@ class JsonExporter extends AbstractExporter implements ExporterInterface
 {
     public function getTarget()
     {
+        $head = $this->getGenerateHeadIfEmpty();
+
         $jsonArray = array();
         
         foreach($this->body as $rowIndex => $row) {
-            foreach($this->head as $column) {
+            foreach($head as $column) {
                 $jsonArray[$rowIndex][$column] = current($row);
                 next($row);
             }
