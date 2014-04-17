@@ -4,10 +4,14 @@ parameters:
     pvessel_table_converter.importer.xml.class: Pvessel\TableConverterBundle\Importer\XmlImporter
     pvessel_table_converter.importer.html_table.class: Pvessel\TableConverterBundle\Importer\HtmlTableImporter
     pvessel_table_converter.importer.html_ul.class: Pvessel\TableConverterBundle\Importer\HtmlListImporter
+    pvessel_table_converter.importer.csv.class: Pvessel\TableConverterBundle\Importer\CsvImporter
+    pvessel_table_converter.importer.ascii_table.class: Pvessel\TableConverterBundle\Importer\AsciiTableImporter
     pvessel_table_converter.exporter.json.class: Pvessel\TableConverterBundle\Exporter\JsonExporter
     pvessel_table_converter.exporter.xml.class: Pvessel\TableConverterBundle\Exporter\XmlExporter
     pvessel_table_converter.exporter.html_table.class: Pvessel\TableConverterBundle\Exporter\HtmlTableExporter
     pvessel_table_converter.exporter.html_ul.class: Pvessel\TableConverterBundle\Exporter\HtmlListExporter
+    pvessel_table_converter.exporter.csv.class: Pvessel\TableConverterBundle\Exporter\CsvExporter
+    pvessel_table_converter.exporter.ascii_table.class: Pvessel\TableConverterBundle\Exporter\AsciiTableExporter
 
 services:
     pvessel_table_converter.manager:
@@ -33,6 +37,15 @@ services:
         tags:
             -  { name: pvessel_table_converter.importer, alias: html_ul }
 
+    pvessel_table_converter.importer.csv:
+        class: %pvessel_table_converter.importer.csv.class%
+        tags:
+            -  { name: pvessel_table_converter.importer, alias: csv }
+
+    pvessel_table_converter.importer.ascii_table:
+        class: %pvessel_table_converter.importer.ascii_table.class%
+        tags:
+            -  { name: pvessel_table_converter.importer, alias: ascii_table }
 
 # built-in exporters: 
     pvessel_table_converter.exporter.json:
@@ -54,3 +67,12 @@ services:
         tags:
             -  { name: pvessel_table_converter.exporter, alias: html_ul }
 
+    pvessel_table_converter.exporter.csv:
+        class: %pvessel_table_converter.exporter.csv.class%
+        tags:
+            -  { name: pvessel_table_converter.exporter, alias: csv }
+
+    pvessel_table_converter.exporter.ascii_table:
+        class: %pvessel_table_converter.exporter.ascii_table.class%
+        tags:
+            -  { name: pvessel_table_converter.exporter, alias: ascii_table }

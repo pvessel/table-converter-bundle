@@ -35,8 +35,8 @@ class ConverterManager
     public function setImporter($importerAlias)
     {
         if(!array_key_exists($importerAlias, $this->importers)) {
-            throw new \DomainException('Unknown importer alias: ' . $importerAlias . '
-                          . Valid are: ' . implode(',', array_keys($this->importers)));
+            throw new \DomainException('Unknown importer alias: ' . $importerAlias  
+                          . '. Valid are: ' . implode(',', array_keys($this->importers)));
         }
 
         $this->currentImporter = $this->importers[$importerAlias];
@@ -54,8 +54,8 @@ class ConverterManager
     public function setExporter($exporterAlias)
     {
         if(!array_key_exists($exporterAlias, $this->exporters)) {
-            throw new \DomainException('Unknown exporter alias: ' . $exporterAlias . '
-                          . Valid are: ' . implode(',', array_keys($this->exporters)));
+            throw new \DomainException('Unknown exporter alias: ' . $exporterAlias 
+                          . '. Valid are: ' . implode(',', array_keys($this->exporters)));
         }
 
         $this->currentExporter = $this->exporters[$exporterAlias];

@@ -76,4 +76,61 @@ class TableConvertersionTest extends WebTestCase
 
         $this->assertTrue(false !== strpos($target, '<ul><li><ul><li>a</li><li>b</li><li>c</li></ul></li><li><ul><li>d</li><li>e</li><li>f</li></ul></li></ul>'));
     }
+    
+    public function testCsvToJsonConversion()
+    {
+        $this->createClient();
+        $service = self::$kernel->getContainer()->get('pvessel_table_converter.manager');
+
+        $target = $service->setSource("1,2,3,4,5\n11,21,31,41,51")
+                          ->convert('csv', 'json')
+                          ->getTarget();
+
+        $this->assertTrue($target ==  '[{"column":["1","2","3","4","5"]},{"column":["11","21","31","41","51"]}]');
+    }
+
+    public function testHtmlListToCsvConversion()
+    {
+        $this->createClient();
+        $service = self::$kernel->getContainer()->get('pvessel_table_converter.manager');
+
+        $target = $service->setSource("<ul><li><ul><li>a</li><li>b</li><li>c</li></ul></li><li><ul><li>d</li><li>e</li><li>f</li></ul></li></ul>")
+                          ->convert('html_ul', 'csv')
+                          ->getTarget();
+
+        $this->assertTrue(false !== strpos($target, "a,b,c\nd,e,f"));
+    }
+
+    public function testAsciiTableToCsvConversion()
+    {
+        $this->createClient();
+        $service = self::$kernel->getContainer()->get('pvessel_table_converter.manager');
+
+        $target = $service->setSource(<<<EOF
+======
+|a|b|c|
+|d|e|f|
+-------
+EOF
+                          )
+                          ->convert('ascii_table', 'csv')
+                          ->getTarget();
+
+        $this->assertTrue(false !== strpos($target, "a,b,c\nd,e,f"));
+    }
+
+    public function testHtmlTablelToAsciiTableConversion()
+    {
+        $this->createClient();
+        $service = self::$kernel->getContainer()->get('pvessel_table_converter.manager');
+
+        $target = $service->setSource('<html><p>This is paragraph.</p><table><thead><tr><th>column1</th><th>column2</th><th>column3</th></tr></thead><tbody><tr><td>a</td><td>b</td><td>c</td></tr><tr><td>d</td><td>e</td><td>f</td></tr></tbody></table></html>')
+                          ->convert('html_table', 'ascii_table')
+                          ->getTarget();
+
+        $this->assertTrue(false !== strpos($target, "|column1|column2|column3|"));
+        
+        $this->assertTrue(false !== strpos($target, "|a      |b      |c      |\n|d      |e      |f"));
+    }
+    
 }
